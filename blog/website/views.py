@@ -1,8 +1,12 @@
 from django.shortcuts import render
-
+from .models import Post
 
 # Create your views here.
 def hello_blog(request):
     lista = ['Python', 'Git', 'Django', 'Linux', 'Banco de Dados', 'HTML']
-    data = {'name': 'Curso de Django 3', 'lista_tecnologia': lista}
+    list_posts = Post.objects.all()
+
+    data = {'name': 'Curso de Django 3',
+            'lista_tecnologia': lista,
+            'posts': list_posts }
     return render(request, 'indexgeral.html', data)
