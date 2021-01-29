@@ -14,9 +14,9 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="{% static 'images/avatar1.jpg' %}" alt="" /></a>
-					<h1><strong>Meu nome é Juliano</strong>, trabalho<br />
-					com tecnologia há mais de 10 anos.<br />
-					Visite meu Facebook <a href="http://facebook.com/julianoguelfi">Juliano Guelfi®</a></h1>
+					<h1><strong>Quem sou eu?</strong><br />A alegria de quem me ama,<br />
+					A tristeza de quem me odeia,<br />
+					E a ocupação de quem me inveja! <a href="http://facebook.com/julianoguelfi">Juliano Guelfi®</a></h1>
 				</div>
 			</header>
 
@@ -26,10 +26,10 @@
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-							<h2>Ipsum lorem dolor aliquam ante commodo<br />
-							magna sed accumsan arcu neque.</h2>
+							<h2>Blog do Juliano!<br />
+							Criado em Django com Python.</h2>
 						</header>
-						<p>Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis tortor primis integer massa adipiscing id nisi accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.</p>
+						<p>Minha idade não define minha maturidade, minhas notas não definem minha inteligência e as fofocas que fazem de mim não definem quem eu sou.</p>
 						<ul class="actions">
 							<li><a href="#" class="button">Leia Mais</a></li>
 						</ul>
@@ -39,12 +39,22 @@
 					<section id="two">
 						<h2>Posts Recentes</h2>
 						<div class="row">
+
+							<!-- IMAGENS DA INDEX QUE FICAM DE FUNDO NOS POSTS -->
 							{% for post in posts %}
 								<article class="col-6 col-12-xsmall work-item">
-									<a href="{% static 'images/fulls/01.jpg' %}" class="image fit thumb"><img src="{% static 'images/thumbs/01.jpg' %}" alt="" /></a>
-										<h3>{{ post.title }}</h3>
+									{% if post.imagem %}
+										<img src="{{ post.imagem.url }}" alt=""  class="image fit thumb" />
+									{% else %}
+										<img src="{% static 'images/thumbs/01.jpg' %}" alt=""  class="image fit thumb" /></a>
+									{% endif %}
+
+									<h3>{{ post.title }}</h3>
 									<p>{{ post.subtitle }}</p>
 									<span>{{ post.get_category_label }}</span>
+									<ul class="actions">
+										<li><a href="{% url 'post_detail' post.id %}" class="button">Leia Mais</a></li>
+									</ul>
 								</article>
 							{% endfor %}
 						</div>
